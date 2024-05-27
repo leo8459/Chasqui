@@ -15,7 +15,7 @@ const databaseConfig = {
     'port': 5432,
     'database': '_delivery_db',
     'user': 'postgres',
-    'password': 'Bosco845'
+    'password': 'Bosquito845?'
 
 };
 
