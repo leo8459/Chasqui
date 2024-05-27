@@ -31,7 +31,7 @@ const orders = require('./routes/ordersRoutes');
 
 
 
-const port = process.env.PORT || 6969;
+const port = process.env.PORT || 3000;
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -56,7 +56,7 @@ orders(app);
 products(app, upload);
 
 
-server.listen(6969, '10.10.100.227' || 'localhost', function(){
+server.listen(3000, '172.65.10.33' || 'localhost', function(){
     console.log('aplicacion de NodeJS' + port + 'iniciada...')
 });
 
