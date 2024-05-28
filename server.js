@@ -56,7 +56,7 @@ orders(app);
 products(app, upload);
 
 
-server.listen(3000, '172.65.10.33' || 'localhost', function(){
+server.listen(3000, '0.0.0.0' || 'localhost', function(){
     console.log('aplicacion de NodeJS' + port + 'iniciada...')
 });
 
