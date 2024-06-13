@@ -54,14 +54,14 @@ module.exports = {
     async getAll(req, res, next){
         try {
             const data = await Order.getAll();
-            console.log(`Usuarios: ${data}`);
+            console.log(`Orders: ${data}`);
             return res.status(201).json(data);
-        } 
-        catch (error) {
+        } catch (error) {
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
-                message: 'error al obtener los usuarios'
+                message: 'error al obtener los usuarios',
+                error: error.message
             });
         }
     },
