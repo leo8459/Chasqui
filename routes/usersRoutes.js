@@ -4,7 +4,7 @@ const passport = require('passport');
 module.exports = (app, upload) => {
 //traer datos
 app.get('/api/users/getAll', UserController.getAll);//esta ruta es la que definimops para el postman
-app.get('/api/users/findDeliveryMen',passport.authenticate('jwt', {session: false}),UserController.findDeliveryMen);
+app.get('/api/users/findDeliveryMen',UserController.findDeliveryMen);
 
 //guardar datos
 app.post('/api/users/create', UserController.register);
