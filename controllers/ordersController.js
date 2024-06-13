@@ -4,7 +4,24 @@ const OrderHasProducts = require('../models/order_has_products');
 const timeRelative = require('../utils/time_relative');
 
 module.exports = {
+    async getAll(req, res, next) {
+        try {
+            let data = await Order.getAll();
+            data.forEach(d => {
+                d.timestamp = timeRelative(new Date().getTime(), d.timestamp);
+            });
+            console.log('Orders: ', data);
 
+            return res.status(200).json(data);
+        } catch (error) {
+            console.log(`Error ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error al obtener todas las órdenes',
+                error: error
+            });
+        }
+    },
     async findByStatus(req, res, next){
         try {
 
@@ -48,20 +65,6 @@ module.exports = {
                 success: false,
                 message: 'Hubo un error ordenes por status',
                 error: error
-            });
-        }
-    },
-    async getAll(req, res, next){
-        try {
-            const data = await Order.getAll();
-            console.log(`Orders: ${data}`);
-            return res.status(201).json(data);
-        } catch (error) {
-            console.log(`Error: ${error}`);
-            return res.status(501).json({
-                success: false,
-                message: 'error al obtener los usuarios',
-                error: error.message
             });
         }
     },
