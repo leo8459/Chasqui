@@ -15,7 +15,7 @@ const databaseConfig = {
     'port': 5432,
     'database': 'admin',
     'user': 'postgres',
-    'password': 'admin'
+    'password': 'Correos.2022'
 
 };
 
