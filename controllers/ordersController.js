@@ -1,4 +1,4 @@
-//const { findByUser } = require('../models/address');
+const { findByUser } = require('../models/address');
 const Order = require('../models/order')
 const OrderHasProducts = require('../models/order_has_products');
 const timeRelative = require('../utils/time_relative');
