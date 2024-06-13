@@ -13,9 +13,9 @@ types.setTypeParser(1114, function(stringValue){
 const databaseConfig = {
     'host': '127.0.0.1',
     'port': 5432,
-    'database': '_delivery_db',
+    'database': 'admin',
     'user': 'postgres',
-    'password': 'Bosquito845?'
+    'password': 'admin'
 
 };
 
