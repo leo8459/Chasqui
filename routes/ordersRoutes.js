@@ -5,7 +5,7 @@ module.exports = (app, upload) => {//app para manejar las peticiones res y el up
 //traer datos
 app.get('/api/orders/findByStatus/:status',passport.authenticate('jwt',{session: false}), OrdersController.findByStatus);//esta ruta es la que definimops para el postman
 app.get('/api/orders/findByClientAndStatus/:id_client/:status',passport.authenticate('jwt',{session: false}), OrdersController.findByClientAndStatus);//esta ruta es la que definimops para el postman
-app.get('/api/orders/findByDeliveryAndStatus/:id_delivery/:status', passport.authenticate('jwt', {session: false}), OrdersController.findByDeliveryAndStatus);
+app.get('/api/orders/findByDeliveryAndStatus/:id_delivery/:status', OrdersController.findByDeliveryAndStatus);
 
 //guardar datos
 app.post('/api/orders/create', passport.authenticate('jwt',{session: false}), OrdersController.create);
