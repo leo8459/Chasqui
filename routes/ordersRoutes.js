@@ -16,10 +16,10 @@ app.post('/api/orders/create', passport.authenticate('jwt',{session: false}), Or
 
 //PUT ROUTES
 
-app.put('/api/orders/updateToDispatched', passport.authenticate('jwt', {session: false}), OrdersController.updateToDispatched);
-app.put('/api/orders/updateToOnTheWay', passport.authenticate('jwt', {session: false}), OrdersController.updateToOnTheWay);
-app.put('/api/orders/updateToDelivered', passport.authenticate('jwt', {session: false}), OrdersController.updateToDelivered);
-app.put('/api/orders/updateLatLng', passport.authenticate('jwt', {session: false}), OrdersController.updateLatLng);
+app.put('/api/orders/updateToDispatched',  OrdersController.updateToDispatched);
+app.put('/api/orders/updateToOnTheWay',  OrdersController.updateToOnTheWay);
+app.put('/api/orders/updateToDelivered',  OrdersController.updateToDelivered);
+app.put('/api/orders/updateLatLng',  OrdersController.updateLatLng);
 
 //actualizar datos
 //401 es no autorizado
