@@ -1,27 +1,10 @@
-const { findByUser } = require('../models/address');
+//const { findByUser } = require('../models/address');
 const Order = require('../models/order')
 const OrderHasProducts = require('../models/order_has_products');
 const timeRelative = require('../utils/time_relative');
 
 module.exports = {
-    async getAll(req, res, next) {
-        try {
-            let data = await Order.getAll();
-            data.forEach(d => {
-                d.timestamp = timeRelative(new Date().getTime(), d.timestamp);
-            });
-            console.log('Orders: ', data);
 
-            return res.status(200).json(data);
-        } catch (error) {
-            console.log(`Error ${error}`);
-            return res.status(501).json({
-                success: false,
-                message: 'Hubo un error al obtener todas las órdenes',
-                error: error
-            });
-        }
-    },
     async findByStatus(req, res, next){
         try {
 
@@ -29,6 +12,8 @@ module.exports = {
             let data = await Order.findByStatus(status);
             data.forEach(d => {
                 d.timestamp = timeRelative(new Date().getTime(), d.timestamp);//btenemos la fecha actual en la que estamos
+                d.created_at = d.created_at; // Recupera el created_at
+                d.updated_at = d.updated_at; // Recupera el updated_at
             })
             console.log('Order: ', data);
 
@@ -53,6 +38,8 @@ module.exports = {
 
             data.forEach(d => {
                 d.timestamp = timeRelative(new Date().getTime(), d.timestamp);//btenemos la fecha actual en la que estamos
+                d.created_at = d.created_at; // Recupera el created_at
+                d.updated_at = d.updated_at; // Recupera el updated_at
             })
                          console.log('Order: ', data);
 
@@ -77,6 +64,8 @@ module.exports = {
             
             data.forEach(d => {
                 d.timestamp = timeRelative(new Date().getTime(), d.timestamp);
+                d.created_at = d.created_at; // Recupera el created_at
+                d.updated_at = d.updated_at; // Recupera el updated_at
             })
 
             // console.log('Order: ', data);
