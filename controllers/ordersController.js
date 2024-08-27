@@ -12,8 +12,6 @@ module.exports = {
             let data = await Order.findByStatus(status);
             data.forEach(d => {
                 d.timestamp = timeRelative(new Date().getTime(), d.timestamp);//btenemos la fecha actual en la que estamos
-                d.created_at = d.created_at; // Recupera el created_at
-                d.updated_at = d.updated_at; // Recupera el updated_at
             })
             console.log('Order: ', data);
 
@@ -38,8 +36,6 @@ module.exports = {
 
             data.forEach(d => {
                 d.timestamp = timeRelative(new Date().getTime(), d.timestamp);//btenemos la fecha actual en la que estamos
-                d.created_at = d.created_at; // Recupera el created_at
-                d.updated_at = d.updated_at; // Recupera el updated_at
             })
                          console.log('Order: ', data);
 
@@ -64,8 +60,6 @@ module.exports = {
             
             data.forEach(d => {
                 d.timestamp = timeRelative(new Date().getTime(), d.timestamp);
-                d.created_at = d.created_at; // Recupera el created_at
-                d.updated_at = d.updated_at; // Recupera el updated_at
             })
 
             // console.log('Order: ', data);
