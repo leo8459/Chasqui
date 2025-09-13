@@ -94,38 +94,33 @@ User.findById = (id, callback) => {
     return db.oneOrNone(sql, id).then(user => {callback(null,user)})
 }
 User.create = async (user) => {
-  const hash = await bcrypt.hash(user.password, 10);
+const hash = await bcrypt.hash(user.password, 10);
 
-  const sql = `
-    INSERT INTO users(
-      email,
-      name,
-      lastname,
-      phone,
-      image,
-      password,
-      created_at,
-      updated_at
+    const sql = `
+    INSERT INTO 
+    users(
+        email,
+        name,
+        lastname,
+        phone,
+        image,
+        password,
+        created_at,
+        updated_at
     )
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
-    RETURNING id
-  `;
-
-  // usamos db.one (debe devolver siempre una fila si el insert fue exitoso)
-  const result = await db.one(sql, [
-    user.email,
-    user.name,
-    user.lastname,
-    user.phone,
-    user.image || null, // aseguramos que no vaya undefined
-    hash,
-    new Date(),
-    new Date()
-  ]);
-
-  return result; // devuelve { id: 123 }
-};
-
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id
+    `;
+    return db.oneOrNone(sql, [
+        user.email,
+        user.name,
+        user.lastname,
+        user.phone,
+        user.image,
+        hash,
+        new Date(),
+        new Date()
+    ]);
+}
 
 User.update = (user) => {
     const sql = `

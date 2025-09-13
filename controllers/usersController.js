@@ -40,58 +40,40 @@ module.exports = {
         }
     },
 
-    async register(req, res, next) {
-    try {
-        const user = req.body;
-        console.log("📩 Datos recibidos en register:", user);
+    async register(req, res, next){
+        try {
+            
+            const user = req.body;
+            const data = await User.create(user);
+            
+            await Rol.create(data.id, 1);
+            const token = jwt.sign({ id: data.id, email: user.email }, keys.secretOrKey,{
+                //expiresIn:
+           })
+           const myData = {
+               id: data.id,
+               name: user.name,
+               lastname: user.lastname,
+               email: user.email,
+               phone: user.phone,
+               image: user.image,
+               session_token: `JWT ${token}`
+           };
+            return res.status(201).json({
+                success: true,
+                message: 'el registro se realizo correctamente',
+                data: myData
+            });
 
-        // Crear usuario en la BD
-        const data = await User.create(user);
-
-        if (!data || !data.id) {
-            throw new Error("User.create no devolvió un ID válido");
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con el registro del usuario',
+                error: error
+            });
         }
-
-        // Si no viene rol_id en el body, asignar por defecto el rol 1
-        const rolId = user.rol_id || 1;
-
-        // Crear relación usuario-rol
-        await Rol.create(data.id, rolId);
-
-        // Generar token JWT
-        const token = jwt.sign(
-            { id: data.id, email: user.email },
-            keys.secretOrKey
-        );
-
-        // Respuesta al cliente
-        const myData = {
-            id: data.id,
-            name: user.name,
-            lastname: user.lastname,
-            email: user.email,
-            phone: user.phone,
-            image: user.image,
-            session_token: `JWT ${token}`,
-            rol_id: rolId
-        };
-
-        return res.status(201).json({
-            success: true,
-            message: '✅ El registro se realizó correctamente',
-            data: myData
-        });
-
-    } catch (error) {
-        console.error("❌ Error en register:", error);
-        return res.status(501).json({
-            success: false,
-            message: 'Hubo un error con el registro del usuario',
-            error: error.message
-        });
-    }
-},
-
+    },
     
     async login(req, res, next){
         try {
