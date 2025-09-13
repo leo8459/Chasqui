@@ -52,9 +52,8 @@ address(app);
 orders(app);
 products(app, upload);
 
-// ---- Arranque ----
-server.listen(port, '0.0.0.0', () => {
-  console.log(`aplicacion de NodeJS ${port} iniciada...`);
+server.listen(3000, '172.65.10.33' || 'localhost', function(){
+    console.log('aplicacion de NodeJS' + port + 'iniciada...')
 });
 
 // ---- Manejo de errores ----
