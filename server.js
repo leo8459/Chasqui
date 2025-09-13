@@ -56,8 +56,8 @@ orders(app);
 products(app, upload);
 
 
-server.listen(port, '0.0.0.0', () => {
-    console.log(`Servidor NodeJS escuchando en http://172.65.10.33:${port}`);
+server.listen(3000, '172.65.10.33' || 'localhost', function(){
+    console.log('aplicacion de NodeJS' + port + 'iniciada...')
 });
 
 
