@@ -14,7 +14,7 @@ app.post('/api/users/login', UserController.login);
 //401 es no autorizado
 
 
-app.put('/api/users/update', passport.authenticate('jwt',{session: false}), upload.array('image', 1), UserController.update);
-app.put('/api/users/updateWithoutImage',passport.authenticate('jwt',{session: false}), UserController.updateWithoutImage);
+app.put('/api/users/update',  upload.array('image', 1), UserController.update);
+app.put('/api/users/updateWithoutImage', UserController.updateWithoutImage);
 
 }
